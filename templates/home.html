@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Home - My Blog</title>
+</head>
+<body>
+    <header>
+        <h1><a href="{{ url_for('home_page') }}">My Blog</a></h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('discussion') }}">Discussion</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                <li><a href="{{ url_for('admin_login') }}">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>All Blogs</h2>
+        {% if blogs %}
+            <ul>
+                {% for blog in blogs %}
+                    <li>
+                        <h3>{{ blog[1] }}</h3>
+                        <div>{{ blog[2] | safe }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No blogs available.</p>
+        {% endif %}
+    </main>
+    <footer>
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>
